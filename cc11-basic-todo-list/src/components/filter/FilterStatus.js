@@ -1,7 +1,10 @@
+import { TodoContext } from "../../contexts/TodoContext";
+import { useContext } from "react";
+
 import RadioButton from "../ui/RadioButton";
-function FilterStatus(props) {
-  // Destructuring object
-  const { changeSearchStatus, searchStatus } = props;
+
+function FilterStatus() {
+  const ctx = useContext(TodoContext);
 
   return (
     <div className="btn-group ms-3" role="group" aria-label="Basic radio toggle button group">
@@ -9,8 +12,8 @@ function FilterStatus(props) {
         name="status"
         id="all"
         color="outline-dark"
-        onChange={() => changeSearchStatus(null)}
-        defaultChecked={searchStatus === null}
+        onChange={() => ctx.changeSearchStatus(null)}
+        defaultChecked={ctx.searchStatus === null}
       >
         <i className="fa-solid fa-list" />
       </RadioButton>
@@ -18,8 +21,8 @@ function FilterStatus(props) {
         name="status"
         id="completed"
         color="outline-dark"
-        onChange={() => changeSearchStatus(true)}
-        defaultChecked={searchStatus === true}
+        onChange={() => ctx.changeSearchStatus(true)}
+        defaultChecked={ctx.searchStatus === true}
       >
         <i className="fa-solid fa-clipboard-check" />
       </RadioButton>
@@ -27,8 +30,8 @@ function FilterStatus(props) {
         name="status"
         id="pending"
         color="outline-dark"
-        onChange={() => changeSearchStatus(false)}
-        defaultChecked={searchStatus === false}
+        onChange={() => ctx.changeSearchStatus(false)}
+        defaultChecked={ctx.searchStatus === false}
       >
         <i className="fa-regular fa-clipboard" />
       </RadioButton>

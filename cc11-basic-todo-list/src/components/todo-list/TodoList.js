@@ -1,22 +1,15 @@
+import { useContext } from "react";
+import { TodoContext } from "../../contexts/TodoContext";
+
 import Todo from "./Todo";
 
-function TodoList(props) {
-  // Destructuring object
-  const { removeTodo, updateTodo, filteredTodoListLimit } = props;
+function TodoList() {
+  const ctx = useContext(TodoContext);
 
   return (
     <ul className="list-group shadown mt-3">
-      {filteredTodoListLimit.map((item) => {
-        return (
-          <Todo
-            key={item.id}
-            title={item.title}
-            completed={item.completed}
-            id={item.id}
-            removeTodo={removeTodo}
-            updateTodo={updateTodo}
-          ></Todo>
-        );
+      {ctx.filteredTodoListLimit.map((item) => {
+        return <Todo key={item.id} title={item.title} completed={item.completed} id={item.id}></Todo>;
       })}
     </ul>
   );

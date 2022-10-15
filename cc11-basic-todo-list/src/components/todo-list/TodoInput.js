@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { TodoContext } from "../../contexts/TodoContext";
+
 import Button from "../ui/Button";
 
 function TodoInput(props) {
   // Destructuring object
-  const { createTodo, id, title, completed, updateTodo, isEditing, setIsEditing } = props;
+  const { id, title, completed, isEditing, setIsEditing } = props;
+
+  const ctx = useContext(TodoContext);
 
   // State parameter declaration
   const [todoInput, setTodoInput] = useState(id ? title : "");
@@ -14,7 +18,7 @@ function TodoInput(props) {
     if (!todoInput) {
       setTodoError("Title is required");
     } else {
-      createTodo(todoInput);
+      ctx.createTodo(todoInput);
       setTodoInput("");
     }
   };
@@ -24,7 +28,7 @@ function TodoInput(props) {
     if (!todoInput) {
       setTodoError("Title is required");
     } else {
-      updateTodo({ title: todoInput, completed }, id);
+      ctx.updateTodo({ title: todoInput, completed }, id);
       setIsEditing(!isEditing);
     }
   };

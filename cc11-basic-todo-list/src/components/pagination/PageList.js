@@ -1,14 +1,17 @@
-import PageItem from "./PageItem";
+import { useContext } from "react";
+import { TodoContext } from "../../contexts/TodoContext";
 import { v4 as uuidv4 } from "uuid";
+
+import PageItem from "./PageItem";
+
 function PageList(props) {
-  // Destructuring pbject
-  const { filteredTodoList, page } = props;
+  const ctx = useContext(TodoContext);
 
   const createButtonList = () => {
     let arr = [];
-    for (let i = 1; i <= Math.ceil(filteredTodoList.length / page.pagelimit); i++) {
+    for (let i = 1; i <= Math.ceil(ctx.filteredTodoList.length / ctx.page.pagelimit); i++) {
       arr.push(
-        <PageItem {...props} key={uuidv4()} active={page.currentPage === i || ""}>
+        <PageItem {...props} key={uuidv4()} active={ctx.page.currentPage === i || ""}>
           {i}
         </PageItem>
       );

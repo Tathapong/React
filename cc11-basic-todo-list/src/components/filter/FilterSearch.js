@@ -1,7 +1,10 @@
+import { TodoContext } from "../../contexts/TodoContext";
+import { useContext } from "react";
+
 import Button from "../ui/Button";
-function FilterSearch(props) {
-  // Destructuring object
-  const { searchInput, setSearchInput } = props;
+
+function FilterSearch() {
+  const ctx = useContext(TodoContext);
 
   return (
     <div className="input-group shadow">
@@ -9,12 +12,12 @@ function FilterSearch(props) {
         type="text"
         className="form-control"
         placeholder="Search"
-        value={searchInput}
+        value={ctx.searchInput}
         onChange={(ev) => {
-          setSearchInput(ev.target.value);
+          ctx.setSearchInput(ev.target.value);
         }}
       />
-      <Button color="dark" onClick={() => setSearchInput("")}>
+      <Button color="dark" onClick={() => ctx.setSearchInput("")}>
         <i className="fa-solid fa-xmark"></i>
       </Button>
     </div>
