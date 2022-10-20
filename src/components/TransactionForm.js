@@ -1,7 +1,14 @@
+import {useNavigate} from 'react-router-dom'
+
 function TransactionForm () {
+    const navigate = useNavigate()
+    const handleSubmitForm=(ev)=> {
+        ev.preventDefault();
+        navigate('/home')
+    }
     return (
         <div className="border bg-white rounded-2 p-3">
-            <form className="row g-3">
+            <form className="row g-3" onSubmit={handleSubmitForm}>
                 <div className="col-6">
                     <input type='radio' 
                     className='btn-check' 

@@ -1,14 +1,22 @@
-import Header from './components/Header'
-import TransactionForm from './components/TransactionForm';
-import TransactionList from './components/TransactionList';
+import Layout from './components/Layout'
+import Home from './pages/Home'
+import TransactionAction from './pages/TransactionAction'
+
+import {Routes,Route,Navigate} from 'react-router-dom'
+
 
 function App() {
   return (
-    <div>
-      <Header/>
-      <TransactionForm />
-      <TransactionList />
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout></Layout>}>
+        <Route path='home' element={<Home />} />
+        <Route path='new' element={<TransactionAction/>} />
+        <Route path='transaction/:transactionId' element={<TransactionAction/>} />
+        <Route index element={<Navigate to='/home'></Navigate>}/>
+      </Route>
+        <Route path='*' element={<Navigate to='/home/'/>}/>
+    </Routes>
+
   );
 }
 
